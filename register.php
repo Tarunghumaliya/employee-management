@@ -1,6 +1,6 @@
 <?php 
 require_once 'php_action/db_connect.php';  
-session.session_start();
+
  ?>
 
 
@@ -62,6 +62,7 @@ if($_POST) {
 			$result = $connect->query($sql);
 
 		
+				session_start();
 				$_SESSION['userName']='$username';
 				$errors[] = "Upload successfully.";
 				header('location: home.php');
