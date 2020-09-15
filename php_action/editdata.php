@@ -16,7 +16,6 @@ if($_POST) {
     $enumber = $_POST['enumber'];
 	$fileToUpload = $_FILES['fileToUpload']['name'];
     
-    echo $id.$ename.$address.$enumber;
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
@@ -38,10 +37,11 @@ if($_POST) {
 			$errors[] = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
 			
-			$sql11 = "UPDATE `employe` SET 'e_name'='$ename', 'e_address'='$address', 'e_contact'='$enumber', 'uploadphoto'='$fileToUpload' WHERE 'e_id' = '$id')";
+			$sql11 = "UPDATE employe SET e_name='$ename', e_address='$address', e_contact=$enumber, uploadphoto='$fileToUpload' WHERE e_id = $id";
 			$result11 = $connect->query($sql11);
 
             $errors[] = "Upload successfully.";
+			header('location: \employee/seeemployee.php');
 
 		} else {
 			$errors[] = "Sorry, there was an error uploading your file.";
